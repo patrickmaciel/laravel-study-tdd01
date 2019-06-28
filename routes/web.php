@@ -10,8 +10,10 @@ Route::get('about', function() {
 });
 
 // Route::resource('posts', 'PostsController');
-Route::Get('/posts/{id}', function($id) {
-    $post = Post::find($id);
+// Route::Get('/posts/{id}', function($id) {
+//     $post = Post::find($id);
 
-    return view('post')->withPost($post);
-});
+//     return view('post')->withPost($post);
+// });
+
+Route::resource('posts', 'PostsController');

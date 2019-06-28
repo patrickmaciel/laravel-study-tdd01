@@ -32,4 +32,17 @@ class BlogViewPost extends TestCase
         // - that we see post published date
         $resp->assertSee($post->created_at);
     }
+
+    /**
+     * not found
+     * @group post-not-found
+     *
+     * @return void
+     */
+    public function test404WhenNotFound()
+    {
+        $resp = $this->get('/posts/INVALID_ID');
+        $resp->assertStatus(404);
+        $resp->assertSeeText('Not Found');
+    }
 }
