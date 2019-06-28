@@ -33,4 +33,19 @@ class PostResourceCreateTest extends TestCase
         $this->assertEquals('New post', $post->title);
         $this->assertEquals('New post body', $post->body);
     }
+
+    /**
+     * validate title
+     * @group posts
+     *
+     * @return void
+     */
+    public function testValidations()
+    {
+        $res = $this->post('/posts', ['body' => 'New post body']);
+        $res->assertSessionHasErrors('title');
+
+        $res = $this->post('/posts', ['title' => 'Title']);
+        $res->assertSessionHasErrors('body');
+    }
 }
